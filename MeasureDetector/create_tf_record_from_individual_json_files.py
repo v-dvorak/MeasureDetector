@@ -49,9 +49,14 @@ def encode_sample_into_tensorflow_sample(path_to_image: str, annotations: Dict, 
     poses = []
     difficult_obj = []
 
-    object_classes = [("system_measures", "system_measure"),
-                      ("stave_measures", "stave_measure"),
-                      ("staves", "stave")]
+    object_classes = [
+        ("system_measures", "system_measure"),
+        ("stave_measures", "stave_measure"),
+        ("staves", "stave"),
+        ("system", "systems"),
+        ("grand_staff", "grand_staves")
+    ]
+    
     for class_name, instance_name in object_classes:
         if class_name not in included_classes:
             continue

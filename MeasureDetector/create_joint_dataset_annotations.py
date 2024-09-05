@@ -38,11 +38,10 @@ def add_all_json_files_to_dataset(dataset_directory, default_engraving_type="han
             continue
         with open(annotation_file, "r") as file:
             image_annotations = json.load(file)
-        system_measures = image_annotations["system_measures"]
         engraving_type = default_engraving_type
         if "engraving" in image_annotations:
             engraving_type = image_annotations["engraving"]
-        number_of_systems_on_this_page = compute_number_of_system_on_page(system_measures)
+        number_of_systems_on_this_page = len(image_annotations["systems"])
         mapped_number_of_systems_on_this_page = map_number_of_systems(number_of_systems_on_this_page)
         mapped_engraving_type = engraving_type_mapping[engraving_type]
 
@@ -55,7 +54,11 @@ def add_all_json_files_to_dataset(dataset_directory, default_engraving_type="han
         page_annotations = {"path": path,
                             "width": image_annotations["width"],
                             "height": image_annotations["height"],
-                            "system_measures": system_measures}
+                            "system_measures": image_annotations["system_measures"],
+                            "stave_measures": image_annotations["stave_measures"],
+                            "staves": image_annotations["staves"],
+                            "systems": image_annotations["systems"],
+                            "grand_staff": image_annotations["grand_staff"]}
 
         joint_dataset[mapped_engraving_type][mapped_number_of_systems_on_this_page].append(page_annotations)
 
@@ -64,8 +67,7 @@ def add_all_json_files_to_dataset(dataset_directory, default_engraving_type="han
 
 def get_random_sample_indices(dataset_size: int,
                               validation_percentage: float,
-                              test_percentage: float) -> (
-        List[int], List[int], List[int]):
+                              test_percentage: float) -> (List[int], List[int], List[int]):
     """
     Returns a set of random sample indices from the entire dataset population
     :param dataset_size: The population size
@@ -137,7 +139,7 @@ if __name__ == "__main__":
                                                                                   number_of_staves))
 
     training_dataset, validation_dataset, test_dataset = split_dataset_annotations_into_train_validation_test(
-        joint_dataset)
+        joint_dataset, validation_percentage=0, test_percentage=0)
 
     json_path = os.path.join(dataset_directory, "joint_dataset_annotations.json")
     with open(json_path, 'w') as file:

@@ -95,9 +95,13 @@ def main(dataset_directory: str, annotations_filename: str, output_path: str, la
         samples_written = 0
         index = 0
         with tqdm(desc="Serializing annotations", total=target_size) as progress_bar:
-            while samples_written < target_size:
+            while samples_written < target_size:                
                 current_engraving, number_of_staves = sampling_categories[index % len(sampling_categories)]
                 all_items_in_category = dataset[current_engraving][number_of_staves]
+
+                if len(all_items_in_category) == 0:
+                    index += 1
+                    continue
 
                 encoding_succeeded = False
                 tf_example = None
@@ -111,7 +115,7 @@ def main(dataset_directory: str, annotations_filename: str, output_path: str, la
                         # If random sample is None, no more samples is available, and reuse is prohibited. Skip it
                         if random_sample is not None:
                             tf_example = encode_sample_into_tensorflow_sample(random_sample["path"], random_sample,
-                                                                              label_map_dict, ["stave_measures"])
+                                                                              label_map_dict, ["system_measures", "stave_measures", "staves", "systems", "grand_staff"])
                             samples_in_dataset.append(random_sample['path'])
                         encoding_succeeded = True
                     except Exception as ex:
