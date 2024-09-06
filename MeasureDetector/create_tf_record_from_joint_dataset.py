@@ -99,6 +99,10 @@ def main(dataset_directory: str, annotations_filename: str, output_path: str, la
                 current_engraving, number_of_staves = sampling_categories[index % len(sampling_categories)]
                 all_items_in_category = dataset[current_engraving][number_of_staves]
 
+                if len(all_items_in_category) == 0:
+                    index += 1
+                    continue
+                
                 encoding_succeeded = False
                 tf_example = None
                 while not encoding_succeeded:
