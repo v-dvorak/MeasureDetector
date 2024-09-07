@@ -53,8 +53,8 @@ def encode_sample_into_tensorflow_sample(path_to_image: str, annotations: Dict, 
         ("system_measures", "system_measure"),
         ("stave_measures", "stave_measure"),
         ("staves", "stave"),
-        ("system", "systems"),
-        ("grand_staff", "grand_staves")
+        ("systems", "system"),
+        ("grand_staff", "grand_stave")
     ]
     
     for class_name, instance_name in object_classes:

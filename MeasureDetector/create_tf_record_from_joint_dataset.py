@@ -119,6 +119,7 @@ def main(dataset_directory: str, annotations_filename: str, output_path: str, la
                             samples_in_dataset.append(random_sample['path'])
                         encoding_succeeded = True
                     except Exception as ex:
+                        print(ex)
                         samples_that_caused_errors.append(random_sample['path'])
                         error_messages.append(f"Skipped image {random_sample['path']} that caused an error: {ex}")
 
