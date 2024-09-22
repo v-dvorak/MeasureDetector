@@ -16,7 +16,7 @@ def transform_single_json_file(file_path):
     elif "bottom" in data["system_measures"][0]:
         return
     
-    # Process system_measures
+    # Process annotations
     new_annots = [[] for i in range(5)]
     for i, name in enumerate(["system_measures", "stave_measures", "staves", "systems", "grand_staff"]):
         for measure in data[name]:
@@ -33,8 +33,8 @@ def transform_single_json_file(file_path):
         "width": data["width"],
         "height": data["height"],
         "system_measures": new_annots[0],
-        "stave_measures": new_annots[1],  # Placeholder for stave_measures
-        "staves": new_annots[2],  # Placeholder for staves
+        "stave_measures": new_annots[1],
+        "staves": new_annots[2],
         "systems": new_annots[3],
         "grand_staff": new_annots[4]
     }
