@@ -1,27 +1,24 @@
-# Use conda install ... to install these
-matplotlib
-Pillow >= 4.2.1
-graphviz # for graphviz, installation via the system might be required, e.g. sudo apt-get install graphviz
-pytest
-#protobuf == 3.4.0
-
-# Use pip install ... to install these
-# tensorflow == 1.13.1
-# tensorflow-gpu == 1.13.1 # Alternatively if available to run vastly faster trainings. See https://github.com/philferriere/dlwin
-h5py
-scikit-learn
-scikit-image==0.17.2
-scipy==1.10.0
-sympy
-muscima==0.10.0
-numpy==1.22.0
-lxml
-pydot
-tqdm
+absl_py==2.1.0
+contextlib2==21.6.0
+hug==2.6.1
+lxml==5.3.0
+matplotlib==3.5.3
+mock==5.1.0
+mung==1.2.1
+numpy==1.21.6
 omrdatasettools==1.2.2
-mung
-contextlib2
-
-# For the inference server
-hug
-requests
+pandas==2.2.3
+Pillow==9.5.0
+Pillow==10.4.0
+protobuf==3.6.1
+pycocotools==2.0.7
+Requests==2.32.3
+scipy==1.7.3
+setuptools==47.1.0
+setuptools==68.0.0
+six==1.16.0
+tensorflow==1.13.1
+torch==2.4.1
+torchsummary==1.5.1
+torchvision==0.19.1
+tqdm==4.66.5
