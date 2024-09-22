@@ -45,6 +45,7 @@ import functools
 import json
 import os
 import tensorflow as tf
+import shutil
 
 from object_detection.builders import dataset_builder
 from object_detection.builders import graph_rewriter_builder
@@ -98,11 +99,6 @@ def main(_):
     configs = config_util.get_configs_from_pipeline_file(
         FLAGS.pipeline_config_path)
     if FLAGS.task == 0:
-      print(os.getcwd())
-      print(os.path.isfile(FLAGS.pipeline_config_path))
-      print(os.path.isdir(FLAGS.train_dir))
-      print(os.path.join(FLAGS.train_dir, 'pipeline.config'))
-      import shutil
       shutil.copy2(FLAGS.pipeline_config_path, os.path.join(FLAGS.train_dir, 'pipeline.config'))
       # try:
       #   tf.gfile.Copy(FLAGS.pipeline_config_path,
@@ -110,7 +106,6 @@ def main(_):
       #                 overwrite=True)
       # except Exception as ex:
       #   print(ex)
-      print("amogus cus")
   else:
     configs = config_util.get_configs_from_multiple_files(
         model_config_path=FLAGS.model_config_path,
