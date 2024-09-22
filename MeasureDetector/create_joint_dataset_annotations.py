@@ -127,9 +127,12 @@ if __name__ == "__main__":
                         help="The directory, where the extracted dataset resides. Directories will be crawled for "
                              "files called dataset.json. The directory for MUSCIMA++ is assumed 'muscima_pp' and "
                              "annotations will be loaded on a per-file base instead of from a dataset.json file")
+    parser.add_argument("--split", type=float, default=1.0,
+                        help="Train/test split ration, 1.0 means all data will be used to train, default is 1.0.")
 
     flags = parser.parse_args()
     dataset_directory = flags.dataset_directory
+    ratio = float(flags.split)
 
     joint_dataset = add_all_json_files_to_dataset(os.path.join(dataset_directory))
 
@@ -139,7 +142,7 @@ if __name__ == "__main__":
                                                                                   number_of_staves))
 
     training_dataset, validation_dataset, test_dataset = split_dataset_annotations_into_train_validation_test(
-        joint_dataset, validation_percentage=0, test_percentage=0)
+        joint_dataset, validation_percentage=0, test_percentage=(1 - ratio))
 
     json_path = os.path.join(dataset_directory, "joint_dataset_annotations.json")
     with open(json_path, 'w') as file:
