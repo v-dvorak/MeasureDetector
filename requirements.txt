@@ -7,6 +7,7 @@ mock==5.1.0
 mung==1.2.1
 numpy==1.21.6
 omrdatasettools==1.2.2
+opencv_python==4.10.0.84
 pandas==2.2.3
 Pillow==9.5.0
 Pillow==10.4.0
