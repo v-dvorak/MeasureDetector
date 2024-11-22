@@ -9,7 +9,7 @@ Models trained in this project can detect: system measures, stave measures, stav
 - [Use the model (inference)](MeasureDetector/demo/)
 - [Dataset overview (OMRLA)](https://github.com/v-dvorak/omr-layout-analysis?tab=readme-ov-file#dataset-overview)
 
-## Disclamer
+## Disclaimer
 
 This project requires TensorFlow 1.13.1 that is no longer maintained, to run it you need to use Python 3.6 or 3.7 which are both heavily outdated and reached their end-of-line. If you would like to base anything on this project I would recommend to work with current version of Python and TensorFlow 2.x. I use these libraries only to replicate Pacha's work.
 
